@@ -99,4 +99,13 @@ class ProdukController extends Controller
             ], 404);
         }
     }
+
+    public function apiindex()
+    {
+        $data = produk::all();
+        return response()->json([
+            'message' => 'success',
+            'data' => $data
+        ]);
+    }
 }
