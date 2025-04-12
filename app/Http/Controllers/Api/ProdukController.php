@@ -11,13 +11,14 @@ class ProdukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function dasboard()
     {
-        $data = produk::all();
-        return response()->json([
-            'message' => 'success',
-            'data' => $data
-        ]);
+        return view('dashboard'); // Return the dashboard view
+    }
+    public function index() 
+    {
+        $produk = produk::all(); // Fetch all produk data
+        return view('dashboard', compact('produk')); // Pass the data to the view
     }
 
     /**
@@ -27,10 +28,10 @@ class ProdukController extends Controller
     {
         $dataProduk = produk::create([
             'nama_produk' => $request->nama_produk,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'deskripsi' => $request->deskripsi,
-            'gambar' => $request->gambar,
+            'harga_produk' => $request->harga_produk,
+            'stok_produk' => $request->stok_produk,
+            'deskripsi_produk' => $request->deskripsi_produk,
+            'gambar_produk' => $request->gambar_produk,
         ]);
         return response()->json([
             'message' => 'success',
@@ -65,10 +66,10 @@ class ProdukController extends Controller
         if ($data) {
             $data->update([
                 'nama_produk' => $request->nama_produk,
-                'harga' => $request->harga,
-                'stok' => $request->stok,
-                'deskripsi' => $request->deskripsi,
-                'gambar' => $request->gambar,
+                'harga_produk' => $request->harga_produk,
+                'stok_produk' => $request->stok_produk,
+                'deskripsi_produk' => $request->deskripsi_produk,
+                'gambar_produk' => $request->gambar_produk,
             ]);
             return response()->json([
                 'message' => 'success',
