@@ -20,7 +20,7 @@ class ProdukSeeder extends Seeder
                 'harga_produk' => $faker->numberBetween(10000, 100000),
                 'stok_produk' => $faker->numberBetween(1, 100),
                 'deskripsi_produk' => $faker->sentence,
-                'gambar_produk' => $faker->imageUrl(640, 480, 'food', true),
+                'gambar_produk' => $faker->imageUrl(640, 480, 'buku', true),
             ]);
         }
     }
