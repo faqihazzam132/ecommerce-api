@@ -10,7 +10,7 @@ class Ecommerce extends Model
     use HasFactory;
 
     protected $table = "ecommerce";
-    protected $fillable = ['name', 'price', 'description'];
+    protected $fillable = ['nama_produk', 'harga_produk', 'stock_produk', 'deskripsi_produk', 'gambar_produk'];
 
 }
  
