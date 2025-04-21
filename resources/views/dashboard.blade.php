@@ -7,10 +7,48 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+    h1 {
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .form-control, .form-select {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .form-control::placeholder, .form-select option {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    table {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    table thead {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    table tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: background-color 0.3s ease;
+    }
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <h1 class="mb-4">Dashboard</h1>
+  <div class="container mt-5 animate__animated animate__fadeIn">
+    <h1 class="mb-4 text-center">Dashboard</h1>
     <div class="d-flex justify-content-between mb-3">
       <input type="text" id="searchBar" class="form-control w-25" placeholder="Cari produk...">
       <select id="stockFilter" class="form-select w-25">
@@ -20,7 +58,7 @@
       </select>
       <button id="exportCsv" class="btn btn-primary">Export CSV</button>
     </div>
-    <table id="productTable" class="table table-bordered">
+    <table id="productTable" class="table table-bordered text-white">
       <thead>
         <tr>
           <th>ID Produk</th>
@@ -86,19 +124,18 @@
       $('#stockFilter').on('change', function() {
         const filterValue = this.value;
         if (filterValue === 'in-stock') {
-          table.column(3).search('^[1-9][0-9]*$', true, false).draw();  // Menampilkan stok yang lebih dari 0
+          table.column(3).search('^[1-9][0-9]*$', true, false).draw();
         } else if (filterValue === 'out-of-stock') {
-          table.column(3).search('^0$', true, false).draw();  // Menampilkan stok yang sama dengan 0
+          table.column(3).search('^0$', true, false).draw();
         } else {
-          table.column(3).search('').draw();  // Menampilkan semua stok
+          table.column(3).search('').draw();
         }
       });
 
       $('#exportCsv').on('click', function() {
-        table.button(0).trigger();  // Memicu ekspor CSV dari DataTable
+        table.button(0).trigger();
       });
     });
   </script>
 </body>
 </html>
-
